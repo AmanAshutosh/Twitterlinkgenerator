@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="description" content="Get your Tweet link" />
+    <title>Twitter Link Generator</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="container">
+      <h1>Twitter Link Generator</h1>
+      <p>Get your Twitter link from just your phone number</p>
+    </header>
+    <main class="container">
+      <fieldset role="group">
+        <input type="text" id="tweetInput" placeholder="Enter your tweet" />
+        <input type="submit" id="generateBtn" value="Generate Twitter Link" />
+      </fieldset>
+      <div id="app"></div>
+    </main>
+    <footer class="container neog-footer">
+      <small>
+        go from zero to hero at full stack development with
+        <a href="https://neog.camp">neog.camp</a>
+      </small>
+    </footer>
+
+    <script>
+      function getTwitterlink(tweet) {
+        const encodedTweet = encodeURIComponent(tweet);
+        return "https://twitter.com/intent/tweet?text=" + encodedTweet;
+      }
+
+      function handleGenerateClick() {
+        const tweetText = inputElement.value;
+        const tweetLink = getTwitterlink(tweetText);
+        appElement.innerHTML = tweetLink;
+      }
+
+      const inputElement = document.getElementById("tweetInput");
+      const buttonElement = document.getElementById("generateBtn");
+      const appElement = document.getElementById("app");
+
+      buttonElement.addEventListener("click", handleGenerateClick);
+    </script>
+  </body>
+</html>
